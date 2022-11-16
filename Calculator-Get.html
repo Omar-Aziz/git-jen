@@ -1,0 +1,74 @@
+<api xmlns="http://ws.apache.org/ns/synapse" name="GETCALC" context="/GetCalc">
+   <resource methods="GET" uri-template="/add/{no1}/{no2}">
+      <inSequence>
+         <log level="full"/>
+         <property name="no1" expression="$ctx:uri.var.no1" scope="default" type="INTEGER"/>
+         <property name="no2" expression="$ctx:uri.var.no2" scope="default" type="INTEGER"/>
+         <script language="js">var no1=parseInt(mc.getProperty("no1"));         var no2=parseInt(mc.getProperty("no2"));         var result = no1 + no2;         mc.setProperty("Result",result);</script>
+         <payloadFactory media-type="json">
+            <format>{"result":"$1"}</format>
+            <args>
+               <arg evaluator="xml" expression="$ctx:Result"/>
+            </args>
+         </payloadFactory>
+         <respond/>
+      </inSequence>
+      <outSequence/>
+      <faultSequence/>
+   </resource>
+   <resource methods="GET" uri-template="/sub/{no1}/{no2}">
+      <inSequence>
+         <log level="full"/>
+         <property name="no1" expression="$ctx:uri.var.no1" scope="default" type="INTEGER"/>
+         <property name="no2" expression="$ctx:uri.var.no2" scope="default" type="INTEGER"/>
+         <script language="js">var no1=parseInt(mc.getProperty("no1"));         var no2=parseInt(mc.getProperty("no2"));         var result = no1 - no2;         mc.setProperty("Result",result);</script>
+         <payloadFactory media-type="json">
+            <format>{"result":"$1"}</format>
+            <args>
+               <arg evaluator="xml" expression="$ctx:Result"/>
+            </args>
+         </payloadFactory>
+         <respond/>
+      </inSequence>
+      <outSequence/>
+      <faultSequence/>
+   </resource>
+   <resource methods="GET" uri-template="/div/{no1}/{no2}">
+      <inSequence>
+         <log level="full"/>
+         <property name="no1" expression="$ctx:uri.var.no1" scope="default" type="INTEGER"/>
+         <property name="no2" expression="$ctx:uri.var.no2" scope="default" type="INTEGER"/>
+         <script language="js">var no1=parseInt(mc.getProperty("no1"));   var no2=parseInt(mc.getProperty("no2"));   var result = no1 / no2;   mc.setProperty("Result",result);</script>
+         <payloadFactory media-type="json">
+            <format>{"result":"$1"}</format>
+            <args>
+               <arg evaluator="xml" expression="$ctx:Result"/>
+            </args>
+         </payloadFactory>
+         <respond/>
+      </inSequence>
+      <outSequence/>
+      <faultSequence/>
+   </resource>
+   <resource methods="GET" uri-template="/mul/{no1}/{no2}">
+      <inSequence>
+         <log level="full"/>
+         <property name="no1" expression="$ctx:uri.var.no1" scope="default" type="INTEGER"/>
+         <property name="no2" expression="$ctx:uri.var.no2" scope="default" type="INTEGER"/>
+         <script language="js">var no1=parseInt(mc.getProperty("no1"));   var no2=parseInt(mc.getProperty("no2"));   var result = no1 * no2;   mc.setProperty("Result",result);</script>
+         <payloadFactory media-type="json">
+            <format>{"result":"$1"}</format>
+            <args>
+               <arg evaluator="xml" expression="$ctx:Result"/>
+            </args>
+         </payloadFactory>
+         <respond/>
+      </inSequence>
+      <outSequence/>
+      <faultSequence/>
+   </resource>
+</api>
+                        
+						
+						
+						
