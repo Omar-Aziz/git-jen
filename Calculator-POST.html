@@ -1,0 +1,92 @@
+<api xmlns="http://ws.apache.org/ns/synapse" name="GETCALC" context="/GetCalc">
+   <resource methods="POST" uri-template="/add">
+      <inSequence>
+         <property name="no1" expression="json-eval($.no1)" scope="default" type="INTEGER"/>
+         <log level="custom">
+            <property name="no1" expression="json-eval($.no1)"/>
+         </log>
+         <property name="no2" expression="json-eval($.no2)" scope="default" type="INTEGER"/>
+         <log level="custom">
+            <property name="no2" expression="json-eval($.no2)"/>
+         </log>
+         <script language="js">var no1=parseInt(mc.getProperty("no1"));         var no2=parseInt(mc.getProperty("no2"));         var result = no1 + no2;         mc.setProperty("Result",result.toString());</script>
+         <payloadFactory media-type="json">
+            <format>{"Result":"$1"}</format>
+            <args>
+               <arg evaluator="xml" expression="$ctx:Result"/>
+            </args>
+         </payloadFactory>
+         <respond/>
+      </inSequence>
+      <outSequence/>
+      <faultSequence/>
+   </resource>
+   <resource methods="POST" uri-template="/sub">
+      <inSequence>
+         <property name="no1" expression="json-eval($.no1)" scope="default" type="INTEGER"/>
+         <log level="custom">
+            <property name="no1" expression="json-eval($.no1)"/>
+         </log>
+         <property name="no2" expression="json-eval($.no2)" scope="default" type="INTEGER"/>
+         <log level="custom">
+            <property name="no2" expression="json-eval($.no2)"/>
+         </log>
+         <script language="js">var no1=parseInt(mc.getProperty("no1"));         var no2=parseInt(mc.getProperty("no2"));         var result = no1 - no2;         mc.setProperty("Result",result);</script>
+         <payloadFactory media-type="json">
+            <format>{"result":"$1"}</format>
+            <args>
+               <arg evaluator="xml" expression="$ctx:Result"/>
+            </args>
+         </payloadFactory>
+         <respond/>
+      </inSequence>
+      <outSequence/>
+      <faultSequence/>
+   </resource>
+   <resource methods="POST" uri-template="/mul">
+      <inSequence>
+         <property name="no1" expression="json-eval($.no1)" scope="default" type="INTEGER"/>
+         <log level="custom">
+            <property name="no1" expression="json-eval($.no1)"/>
+         </log>
+         <property name="no2" expression="json-eval($.no2)" scope="default" type="INTEGER"/>
+         <log level="custom">
+            <property name="no2" expression="json-eval($.no2)"/>
+         </log>
+         <script language="js">var no1=parseInt(mc.getProperty("no1"));         var no2=parseInt(mc.getProperty("no2"));         var result = no1 + no2;         mc.setProperty("Result",result.toString());</script>
+        
+		<payloadFactory media-type="json">
+            <format>{"result":"$1"}</format>
+            <args>
+               <arg evaluator="xml" expression="$ctx:Result"/>
+            </args>
+         </payloadFactory>
+         <respond/>
+      </inSequence>
+      <outSequence/>
+      <faultSequence/>
+   </resource>
+   <resource methods="POST" uri-template="/div">
+      <inSequence>
+         <property name="no1" expression="json-eval($.no1)" scope="default" type="INTEGER"/>
+         <log level="custom">
+            <property name="no1" expression="json-eval($.no1)"/>
+         </log>
+         <property name="no2" expression="json-eval($.no2)" scope="default" type="INTEGER"/>
+         <log level="custom">
+            <property name="no2" expression="json-eval($.no2)"/>
+         </log>
+         <script language="js">var no1=parseInt(mc.getProperty("no1"));         var no2=parseInt(mc.getProperty("no2"));         var result = no1 + no2;         mc.setProperty("Result",result);</script>
+         <payloadFactory media-type="json">
+            <format>{"result":"$1"}</format>
+            <args>
+               <arg evaluator="xml" expression="$ctx:Result"/>
+            </args>
+         </payloadFactory>
+         <respond/>
+      </inSequence>
+      <outSequence/>
+      <faultSequence/>
+   </resource>
+</api>
+                        
